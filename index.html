@@ -12,14 +12,14 @@ body {
   justify-content: center;
   align-items: center;
   background: #f5f5f5;
-  font-family: Arial;
+  font-family: 'Georgia', serif;
 }
 
 /* Envelope */
 .envelope {
   position: relative;
-  width: 300px;
-  height: 200px;
+  width: 320px;
+  height: 220px;
   background: #e0c3a3;
   cursor: pointer;
   perspective: 1000px;
@@ -36,28 +36,40 @@ body {
   clip-path: polygon(0 0, 100% 0, 50% 60%);
 }
 
-/* Card inside */
+/* Card */
 .card {
   position: absolute;
-  width: 260px;
-  height: 360px;
+  width: 280px;
+  height: 400px;
   background: white;
   top: 50%;
   left: 50%;
   transform: translate(-50%, 20%);
   transition: 1s;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  padding: 20px;
+  text-align: center;
 }
 
-/* Your invitation image */
-.card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+/* Invitation Content */
+.title {
+  font-size: 22px;
+  margin-bottom: 10px;
 }
 
-/* Open effect */
+.names {
+  font-size: 20px;
+  color: crimson;
+  margin: 10px 0;
+}
+
+.guest {
+  font-size: 16px;
+  margin: 15px 0;
+  font-weight: bold;
+}
+
+/* Open Animation */
 .envelope.open .flap {
   transform: rotateX(180deg);
 }
@@ -74,12 +86,31 @@ body {
   <div class="flap"></div>
 
   <div class="card">
-    <!-- এখানে আপনার image বসান -->
-    <img src="invitation.png" alt="Wedding Card">
+    <div class="title">Wedding Invitation</div>
+
+    <div class="guest">Dear <span id="guestName">Guest</span></div>
+
+    <div class="names">Rahim ❤️ Subaita</div>
+
+    <p>You are cordially invited to our wedding.</p>
+
+    <p>📅 25 December 2026</p>
+    <p>⏰ 7:00 PM</p>
+    <p>📍 Dhaka Convention Hall</p>
   </div>
 </div>
 
 <script>
+// URL থেকে নাম নেওয়া
+const params = new URLSearchParams(window.location.search);
+const name = params.get("name");
+
+// Set name
+if(name){
+  document.getElementById("guestName").innerText = name;
+}
+
+// Envelope open
 function openEnvelope(el){
   el.classList.toggle("open");
 }
