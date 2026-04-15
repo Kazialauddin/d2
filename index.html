@@ -170,26 +170,29 @@ const name = params.get("name");
 if(name){
   document.getElementById("guestName").innerText = "Dear " + name;
 }
+
 //--
 let images = ["weddingTemplate1.png", "w2.png"];
 let i = 0;
 
-setInterval(() => {
+function changeBg() {
   let bg = document.getElementById("bg");
+
   bg.style.opacity = 0;
 
   setTimeout(() => {
     bg.style.backgroundImage = `url('${images[i]}')`;
     bg.style.opacity = 1;
+
     i = (i + 1) % images.length;
-  }, 1000);
-
-}, 5000);
-
-//---
-function showMessage(){
-    alert("We can't wait to celebrate with you! 💍✨");
+  }, 800);
 }
+
+// প্রথমে start করুন
+changeBg();
+
+// তারপর loop করুন
+setInterval(changeBg, 4000);
 
 // Confetti effect
 for(let i=0;i<30;i++){
