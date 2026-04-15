@@ -89,8 +89,9 @@ h1{
   height: 100%;
   background: url('weddingTemplate1.png') center/cover no-repeat;
   z-index: -1;
-  transition: opacity 1s;
+  transition: opacity 0.8s ease-in-out;
 }
+
 
 button{
     margin-top:25px;
@@ -185,14 +186,14 @@ function changeBg() {
     bg.style.opacity = 1;
 
     i = (i + 1) % images.length;
-  }, 800);
+  }, 8000);
 }
 
 // প্রথমে start করুন
 changeBg();
 
 // তারপর loop করুন
-setInterval(changeBg, 4000);
+setInterval(changeBg, 8000);
 
 // Confetti effect
 for(let i=0;i<30;i++){
