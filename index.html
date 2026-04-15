@@ -186,14 +186,14 @@ function changeBg() {
     bg.style.opacity = 1;
 
     i = (i + 1) % images.length;
-  }, 8000);
+  }, 1000);
 }
 
 // প্রথমে start করুন
 changeBg();
 
 // তারপর loop করুন
-setInterval(changeBg, 8000);
+setInterval(changeBg, 4000);
 
 // Confetti effect
 for(let i=0;i<30;i++){
