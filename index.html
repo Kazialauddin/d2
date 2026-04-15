@@ -36,11 +36,13 @@
     content:"";
     position:absolute;
     inset:0;
-    /* ❌ এটা remove করুন */
-    /* background:url('weddingTemplate2.png') center/cover no-repeat; */
-    background: rgba(255,255,255,0.6); /* light overlay দিন */
+    background:
+      linear-gradient(rgba(255,255,255,0.6), rgba(255,255,255,0.6)),
+      url('weddingTemplate2.png') center/cover no-repeat;
     z-index:0;
 }
+
+
 
 .content{
     position:relative;
