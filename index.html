@@ -109,7 +109,9 @@ const name = params.get("name");
 if(name){
   document.getElementById("guestName").innerText = name;
 }
-
+window.onload = () => {
+  document.querySelector(".envelope").classList.add("open");
+}
 // Envelope open
 function openEnvelope(el){
   el.classList.toggle("open");
