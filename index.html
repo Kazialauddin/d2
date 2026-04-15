@@ -1,122 +1,197 @@
-<!DOCTYPE html>
-<html lang="en">
+ <!DOCTYPE html><html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Wedding Invitation</title>
-
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-body {
-  margin: 0;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #f5f5f5;
-  font-family: 'Georgia', serif;
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+    }body{
+    font-family:'Poppins',sans-serif;
+    background:linear-gradient(135deg,#f8f5f0,#f3e7d9);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    overflow:hidden;
 }
 
-/* Envelope */
-.envelope {
-  position: relative;
-  width: 320px;
-  height: 220px;
-  background: #e0c3a3;
-  cursor: pointer;
-  perspective: 1000px;
+.card{
+    background:white;
+    width:90%;
+    max-width:600px;
+    padding:40px 30px;
+    border-radius:20px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.15);
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+    animation:fadeIn 2s ease;
 }
 
-/* Flap */
-.flap {
-  position: absolute;
+.card::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:url('weddingTemplate2.png') center/cover no-repeat;
+    opacity:0.48;
+    z-index:0;
+}
+
+.content{
+    position:relative;
+    z-index:1;
+}
+
+h1{
+    font-family:'Playfair Display',serif;
+    font-size:36px;
+    margin-bottom:10px;
+    animation:slideDown 1.5s ease;
+}
+
+.guest{
+    margin-bottom:20px;
+    font-size:18px;
+    color:#555;
+}
+
+.names{
+    font-family:'Playfair Display',serif;
+    font-size:32px;
+    color:#b8860b;
+    margin:15px 0;
+    animation:pulse 2s infinite;
+}
+
+.heart{
+    color:red;
+    animation:beat 1s infinite;
+}
+
+.details{
+    margin-top:20px;
+    line-height:1.8;
+    font-size:16px;
+}
+
+#bg {
+  position: fixed;
   width: 100%;
   height: 100%;
-  background: #d4a373;
-  transform-origin: top;
-  transition: 0.8s;
-  clip-path: polygon(0 0, 100% 0, 50% 60%);
+  background: url('img1.jpg') center/cover no-repeat;
+  z-index: -1;
+  transition: opacity 1s;
 }
 
-/* Card */
-.card {
-  position: absolute;
-  width: 280px;
-  height: 400px;
-  background: white;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, 20%);
-  transition: 1s;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-  padding: 20px;
-  text-align: center;
+button{
+    margin-top:25px;
+    padding:10px 25px;
+    border:none;
+    border-radius:30px;
+    background:#b8860b;
+    color:white;
+    cursor:pointer;
+    font-size:14px;
+    transition:0.3s;
 }
 
-/* Invitation Content */
-.title {
-  font-size: 22px;
-  margin-bottom: 10px;
+button:hover{
+    background:#8b6508;
+    transform:scale(1.05);
 }
 
-.names {
-  font-size: 20px;
-  color: crimson;
-  margin: 10px 0;
+@keyframes fadeIn{
+    from{opacity:0; transform:scale(0.9);} 
+    to{opacity:1; transform:scale(1);} 
 }
 
-.guest {
-  font-size: 16px;
-  margin: 15px 0;
-  font-weight: bold;
+@keyframes slideDown{
+    from{opacity:0; transform:translateY(-30px);} 
+    to{opacity:1; transform:translateY(0);} 
 }
 
-/* Open Animation */
-.envelope.open .flap {
-  transform: rotateX(180deg);
+@keyframes pulse{
+    0%{transform:scale(1);} 
+    50%{transform:scale(1.05);} 
+    100%{transform:scale(1);} 
 }
 
-.envelope.open .card {
-  transform: translate(-50%, -120%);
+@keyframes beat{
+    0%,100%{transform:scale(1);} 
+    50%{transform:scale(1.3);} 
 }
+
+.confetti{
+    position:absolute;
+    width:8px;
+    height:8px;
+    background:red;
+    top:-10px;
+    animation:fall linear infinite;
+}
+
+@keyframes fall{
+    to{transform:translateY(100vh) rotate(360deg);} 
+}
+
 </style>
 </head>
-
-<body>
-
-<div class="envelope" onclick="openEnvelope(this)">
-  <div class="flap"></div>
-
-  <div class="card">
-    <div class="title">Wedding Invitation</div>
-
-    <div class="guest">Dear <span id="guestName">Guest</span></div>
-
-    <div class="names">Rahim ❤️ Subaita</div>
-
-    <p>You are cordially invited to our wedding.</p>
-
-    <p>📅 25 December 2026</p>
-    <p>⏰ 7:00 PM</p>
-    <p>📍 Dhaka Convention Hall</p>
-  </div>
+<body><div class="card" id="bg" >
+    <div class="content">
+        <h1>Wedding Invitation</h1>
+        <div class="guest" id="guestName">
+Dear Sneha And Dipok</div>
+        <div class="names">Shahrukh<span class="heart">❤</span> Kazol</div>
+        <p>You are cordially invited to celebrate our wedding.</p>
+        <div class="details">
+            📅 25 December 2026 <br>
+            ⏰ 7:00 PM <br>
+            📍 Dhaka Convention Hall
+        </div>
+      <!--  <button onclick="showMessage()">Click for Surprise</button> -->
+    </div>
 </div>
-
 <script>
-// URL থেকে নাম নেওয়া
+
 const params = new URLSearchParams(window.location.search);
 const name = params.get("name");
 
-// Set name
 if(name){
-  document.getElementById("guestName").innerText = name;
+  document.getElementById("guestName").innerText = "Dear " + name;
 }
-window.onload = () => {
-  document.querySelector(".envelope").classList.add("open");
+function showMessage(){
+    alert("We can't wait to celebrate with you! 💍✨");
 }
-// Envelope open
-function openEnvelope(el){
-  el.classList.toggle("open");
-}
-</script>
 
-</body>
+// Confetti effect
+for(let i=0;i<30;i++){
+    let conf=document.createElement('div');
+    conf.classList.add('confetti');
+    conf.style.left=Math.random()*100+'%';
+    conf.style.backgroundColor=`hsl(${Math.random()*360},70%,60%)`;
+    conf.style.animationDuration=(Math.random()*3+2)+'s';
+    document.body.appendChild(conf);
+}
+
+let images = ["weddingTemplate2.png", "w2.png"];
+let i = 0;
+
+setInterval(() => {
+  let bg = document.getElementById("bg");
+  bg.style.opacity = 0;
+
+  setTimeout(() => {
+    bg.style.backgroundImage = `url('${images[i]}')`;
+    bg.style.opacity = 1;
+    i = (i + 1) % images.length;
+  }, 1000);
+
+}, 5000);
+
+
+</script></body>
 </html>
